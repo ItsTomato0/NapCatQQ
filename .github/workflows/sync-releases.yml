@@ -1,0 +1,18 @@
+name: Sync Releases
+on:
+  workflow_dispatch:  # 手动触发，授权场景下不建议设自动定时
+
+permissions:
+  contents: write
+
+jobs:
+  clone:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone releases with assets
+        uses: andrewthetechie/gha-clone-releases@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          src_repo: "NapNeko/NapCatQQ"
+          # dest_repo 不填，默认就是当前仓库
+          copy_assets: true
